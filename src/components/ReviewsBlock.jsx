@@ -1,13 +1,38 @@
-import React from "react";
 import useReveal from "../useReveal";
-import {reviews} from "../data/reviews";
-import ReviewCard from "./ReviewCard";
-export default function ReviewsBlock({sidebar=false}){
-  const ref=useReveal();
-  return <section className={sidebar?"reviews-side":"reviews section"}>
-  <div ref={ref} className="reveal">
-    <div className="eyebrow">GOOGLE REVIEWS</div><div className="rating">4.6 <span>/ 5</span></div><div className="stars">★★★★★</div><p className="reviewcount">38 Google Reviews</p>
-  </div>
-  <div className="reviewrow">{reviews.slice(0,sidebar?4:6).map(r=><ReviewCard key={r.name} review={r}/>)}</div>
-  {!sidebar&&<a className="button outline" href="/reviews">VIEW ALL REVIEWS</a>}
-</section>}
+import { reviews } from "../data/reviews";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+
+export default function ReviewsBlock() {
+  const headRef = useReveal();
+  const gridRef = useReveal();
+  return (
+    <section className="reviews-section">
+      <div className="container">
+        <div ref={headRef} className="reviews-header reveal">
+          <span className="eyebrow">Google Reviews</span>
+          <h2>What Our <em>Guests Say</em></h2>
+          <div className="rating-display">
+            <span className="rating-num">4.6</span>
+            <div className="rating-info">
+              <span className="stars">★★★★★</span>
+              <span className="review-count">38 reviews</span>
+            </div>
+          </div>
+        </div>
+        <div ref={gridRef} className="reviews-grid reveal d2">
+          {reviews.slice(0, 3).map(r => (
+            <div className="review-card" key={r.name}>
+              <div className="review-card-stars" aria-hidden="true">★★★★★</div>
+              <p>"{r.text}"</p>
+              <span className="review-card-author">{r.name}</span>
+            </div>
+          ))}
+        </div>
+        <div className="reviews-link-row">
+          <Link className="text-link" to="/reviews">Read more guest feedback <ArrowRight size={15} aria-hidden="true" /></Link>
+        </div>
+      </div>
+    </section>
+  );
+}

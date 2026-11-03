@@ -1,96 +1,171 @@
-import React from "react";
+import { ArrowDown, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import useReveal from "../useReveal";
-import {Link} from "react-router-dom";
-import {ArrowRight, ChevronDown, Sparkles} from "lucide-react";
-import {experiences} from "../data/experiences";
-import ExperienceCard from "../components/ExperienceCard";
 import ReviewsBlock from "../components/ReviewsBlock";
+import vesselImage from "../images/images.jpg";
+import tablewareImage from "../images/images (1).jpg";
+import smallPiecesImage from "../images/WhatsApp Image 2026-09-29 at 11.45.56 (1).jpeg";
+import craftImage from "../images/images (2).jpg";
+import potteryImage from "../images/WhatsApp Image 2026-09-29 at 11.45.57 (3).jpeg";
+import ctaImage from "../images/WhatsApp Image 2026-09-29 at 11.45.59.jpeg";
+import homeVideo from "../images/home.mp4";
 
-const hero="https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=2200&q=90";
+const collection = [
+  {
+    number: "01",
+    title: "Vessels & forms",
+    image: vesselImage,
+    alt: "Hand-decorated pottery vessel with geometric patterns",
+  },
+  {
+    number: "02",
+    title: "Tableware",
+    image: tablewareImage,
+    alt: "Decorated pottery arranged as a serving set",
+  },
+  {
+    number: "03",
+    title: "Small keepsakes",
+    image: smallPiecesImage,
+    alt: "Small handcrafted clay keepsakes",
+  },
+];
 
-export default function Home(){
-  const heroRef=useReveal();
-  const introRef=useReveal();
-  const statsRef=useReveal();
-  const expRef=useReveal();
-  const featureImgRef=useReveal();
-  const featureTxtRef=useReveal();
-  const quoteRef=useReveal();
-  const ctaRef=useReveal();
+export default function Home() {
+  const introRef = useReveal();
+  const imageRef = useReveal();
+  const storyRef = useReveal();
+  const collectionRef = useReveal();
+  const collectionGridRef = useReveal();
+  const editorialRef = useReveal();
 
-  return <>
-<section className="hero" style={{backgroundImage:`linear-gradient(90deg,rgba(20,13,9,.72),rgba(20,13,9,.18)),url(${hero})`}}>
-  <div className="hero-inner">
-    <div ref={heroRef} className="reveal">
-      <div className="eyebrow">AUTHENTIC • CULTURAL • HANDCRAFTED • FIJIAN</div>
-      <h1>Where Fiji's<br/><em>Heritage Lives</em><br/>in Clay</h1>
-      <p>Discover the traditions, craftsmanship and warm hospitality behind Lapita pottery in the heart of Fiji.</p>
-      <div className="actions">
-        <Link className="button" to="/experiences">EXPLORE THE EXPERIENCE <ArrowRight/></Link>
-        <Link className="button light" to="/booking">BOOK YOUR VISIT</Link>
-      </div>
-    </div>
-  </div>
-  <div className="scroll"><ChevronDown/></div>
-</section>
+  return (
+    <>
+      <section
+        className="hero"
+        aria-label="Effie Lapita Pottery"
+      >
+        <img className="hero-image" src={vesselImage} alt="" fetchPriority="high" decoding="async" />
+        <div className="hero-inner">
+          <div className="hero-copy">
+            <div className="hero-kicker">
+              <span className="hero-kicker-line" aria-hidden="true" />
+              Nakabuta <span aria-hidden="true">·</span> Sigatoka <span aria-hidden="true">·</span> Fiji
+            </div>
+            <h1>Made by hand.<br /><em>Rooted in place.</em></h1>
+            <p className="hero-desc">
+              Discover handmade pottery and the people and place behind it in Nakabuta, Fiji.
+            </p>
+            <div className="hero-actions">
+              <Link className="btn btn-gold" to="/pottery">
+                Explore the pottery <ArrowRight size={15} aria-hidden="true" />
+              </Link>
+              <Link className="btn btn-outline-light" to="/booking">Plan a visit</Link>
+            </div>
+          </div>
+        </div>
+        <a className="hero-scroll" href="#welcome">
+          <span>Discover</span><ArrowDown size={15} aria-hidden="true" />
+        </a>
+        <span className="hero-caption">EFFIE LAPITA POTTERY <i aria-hidden="true">/</i> FIJI</span>
+      </section>
 
-<section className="intro section">
-  <div className="split">
-    <div ref={introRef} className="reveal reveal-left">
-      <div className="eyebrow">A LIVING TRADITION</div>
-      <h2>More Than Pottery.<br/><em>A Living Tradition.</em></h2>
-      <p>Step into an experience shaped by handmade pottery, village culture, craftsmanship and genuine Fijian hospitality.</p>
-      <p>From the clay in skilled hands to the warmth of a village welcome, every visit offers a closer connection to the culture and people of Fiji.</p>
-      <Link className="textlink" to="/about">MEET EFFIE <ArrowRight/></Link>
-    </div>
-    <img ref={featureImgRef} className="editorial reveal reveal-right" src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=1300&q=85" alt="Handmade pottery" loading="lazy"/>
-  </div>
-  <div ref={statsRef} className="stats reveal">
-    <div><b>38+</b><span>Google Reviews</span></div>
-    <div><b>4.6</b><span>Google Rating</span></div>
-    <div><b>Fiji</b><span>Nakabuta / Sigatoka</span></div>
-    <div><b>24h</b><span>Listed Opening Hours</span></div>
-  </div>
-</section>
+      <section className="section intro-section" id="welcome">
+        <div className="split">
+          <div ref={introRef} className="split-text reveal-left">
+            <span className="eyebrow">A place for craft & connection</span>
+            <h2>Clay, culture <em>&amp; a warm welcome.</em></h2>
+            <p className="lead">
+              Effie Lapita Pottery invites visitors to discover handmade pottery and village life in Nakabuta, Sigatoka.
+            </p>
+            <p>
+              Take time to look closely at the forms, patterns and finishes of the pottery, then get in touch to arrange a visit.
+            </p>
+            <Link className="text-link" to="/about">
+              Learn about Effie Lapita Pottery <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
+          <div ref={imageRef} className="split-img reveal-right">
+            <img src={craftImage} alt="Handcrafted pottery displayed together" loading="lazy" />
+            <span className="image-caption">The pottery collection</span>
+          </div>
+        </div>
+        <div className="place-note">
+          <span className="place-note-mark" aria-hidden="true">✳</span>
+          <p><strong>Nakabuta, Sigatoka</strong><span>Fiji Islands</span></p>
+          <Link to="/contact">Find us <ArrowRight size={14} aria-hidden="true" /></Link>
+        </div>
+      </section>
 
-<section className="dark section">
-  <div className="container">
-    <div ref={expRef} className="sectionhead reveal">
-      <div><div className="eyebrow">THE EXPERIENCE</div><h2>Culture you can <em>feel.</em></h2></div>
-      <Link className="textlink lightlink" to="/experiences">VIEW ALL <ArrowRight/></Link>
-    </div>
-    <div className="expgrid">{experiences.map(x=><ExperienceCard item={x} key={x.title}/>)}</div>
-  </div>
-</section>
+      <section className="section collection-section">
+        <div className="container">
+          <div ref={collectionRef} className="section-heading reveal">
+            <div>
+              <span className="eyebrow">From the collection</span>
+              <h2>Objects with <em>a sense of place.</em></h2>
+            </div>
+            <Link className="text-link" to="/gallery">
+              View the gallery <ArrowRight size={15} aria-hidden="true" />
+            </Link>
+          </div>
+          <div ref={collectionGridRef} className="collection-grid reveal">
+            {collection.map((item) => (
+              <Link className="collection-card" to="/gallery" key={item.number}>
+                <div className="collection-image">
+                  <img src={item.image} alt={item.alt} loading="lazy" />
+                  <span className="collection-number">{item.number}</span>
+                </div>
+                <div className="collection-card-caption">
+                  <h3>{item.title}</h3>
+                  <ArrowRight size={16} aria-hidden="true" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
-<section className="feature section">
-  <div className="split reverse">
-    <img ref={featureTxtRef} className="editorial tall reveal reveal-left" src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=1400&q=85" alt="Pottery craftsmanship" loading="lazy"/>
-    <div ref={featureImgRef} className="reveal reveal-right">
-      <div className="eyebrow">CRAFTSMANSHIP</div>
-      <h2>Shaped by Hand.<br/><em>Rooted in Heritage.</em></h2>
-      <p>Pottery brings together material, touch and tradition. Discover handmade pieces and the people behind the craft without leaving the experience to a resort brochure.</p>
-      <Link className="button" to="/pottery">DISCOVER OUR POTTERY <ArrowRight/></Link>
-    </div>
-  </div>
-</section>
+      <section className="editorial-section">
+        <div ref={editorialRef} className="editorial-image reveal-left">
+          <img src={potteryImage} alt="Handmade pottery pieces arranged together" loading="lazy" />
+        </div>
+        <div ref={storyRef} className="editorial-copy reveal">
+          <span className="eyebrow">See it up close</span>
+          <h2>Every curve.<br /><em>Every mark.</em></h2>
+          <p>
+            Browse the gallery for a closer look at the pottery. To ask about a particular piece, send an enquiry and the team can confirm what is available.
+          </p>
+          <Link className="btn btn-primary" to="/order">
+            Ask about a piece <ArrowRight size={15} aria-hidden="true" />
+          </Link>
+        </div>
+        <span className="editorial-index" aria-hidden="true">01 — 03</span>
+      </section>
 
-<section className="quote">
-  <div ref={quoteRef} className="container reveal reveal-scale">
-    <Sparkles/>
-    <p>"A place where visitors don't just see Fiji — they experience it."</p>
-    <span>MEMORIES MADE IN FIJI</span>
-  </div>
-</section>
+      <section className="our-story-video-section" aria-label="Effie Lapita Pottery video">
+        <video
+          className="our-story-video"
+          src={homeVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden="true"
+        />
+      </section>
 
-<ReviewsBlock/>
+      <ReviewsBlock />
 
-<section className="cta">
-  <div ref={ctaRef} className="reveal">
-    <div className="eyebrow">PLAN YOUR VISIT</div>
-    <h2>Come closer to the culture.</h2>
-    <p>Request a visit and we'll contact you to confirm availability.</p>
-    <Link className="button light" to="/booking">REQUEST A BOOKING <ArrowRight/></Link>
-  </div>
-</section>
-</>}
+      <section className="cta-section" style={{ "--cta-image": `url("${ctaImage}")` }}>
+        <div className="cta-section-content">
+          <span className="eyebrow">Visit Nakabuta</span>
+          <h2>Come and experience it <em>for yourself.</em></h2>
+          <p>Send a visit request and get in touch with Effie Lapita Pottery.</p>
+          <Link className="btn btn-gold" to="/booking">
+            Plan your visit <ArrowRight size={15} aria-hidden="true" />
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+}

@@ -1,3 +1,36 @@
-import React from "react";
-import {Routes,Route} from "react-router-dom"; import Layout from "./components/Layout"; import Home from "./pages/Home"; import {About,Experiences,Pottery,IslandHopping,Reviews} from "./pages/Generic"; import Gallery from "./pages/Gallery"; import Booking from "./pages/Booking"; import Order from "./pages/Order"; import Contact from "./pages/Contact"; import "./styles.css";
-export default function App(){return <Routes><Route element={<Layout/>}><Route path="/" element={<Home/>}/><Route path="/about" element={<About/>}/><Route path="/experiences" element={<Experiences/>}/><Route path="/pottery" element={<Pottery/>}/><Route path="/island-hopping" element={<IslandHopping/>}/><Route path="/gallery" element={<Gallery/>}/><Route path="/reviews" element={<Reviews/>}/><Route path="/booking" element={<Booking/>}/><Route path="/order" element={<Order/>}/><Route path="/contact" element={<Contact/>}/></Route></Routes>}
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import {
+  About,
+  Experiences,
+  IslandHopping,
+  NotFound,
+  Pottery,
+  Reviews,
+} from "./pages/Generic";
+import Gallery from "./pages/Gallery";
+import Booking from "./pages/Booking";
+import Order from "./pages/Order";
+import Contact from "./pages/Contact";
+import "./styles.css";
+
+export default function App() {
+  return (
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/experiences" element={<Experiences />} />
+        <Route path="/pottery" element={<Pottery />} />
+        <Route path="/island-hopping" element={<IslandHopping />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/reviews" element={<Reviews />} />
+        <Route path="/booking" element={<Booking />} />
+        <Route path="/order" element={<Order />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
+  );
+}
